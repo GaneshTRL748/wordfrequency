@@ -11,12 +11,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 public class Wordcount{
-
-	public static void main(String[] args) throws FileNotFoundException {
+	    static HashMap<String,Integer> frequency=new HashMap<>();
+	    static  String[] temp = null;
+	    public static void insertword(String word)
+	    {
+	    	if(frequency.containsKey(word))
+			{
+				int count=frequency.get(word)+1;
+				frequency.put(word, count);
+			}
+			else {
+				frequency.put(word, 1);
+			}
+	    }
+	    public static void insertwords()
+	    {
+	    	for(String i:temp)
+			{
+				if(frequency.containsKey(i))
+				{
+					int count=frequency.get(i)+1;
+					frequency.put(i, count);
+				}
+				else {
+					frequency.put(i, 1);
+				}
+			}
+			temp=null;
+	    }
+	    public static void main(String[] args) throws FileNotFoundException {
 		Logger l= Logger.getLogger("com.api.jar");
-		String temp[] = null;
-		Scanner txt=new  Scanner(new File("D:\\ganesh practise\\js-Basics\\word\\frequency.txt"));
-		HashMap<String,Integer> frequency=new HashMap<>();
+		Scanner txt=new  Scanner(new File("\\word\\frequency.txt"));
 		while(txt.hasNext())
 		{
 			String word=txt.next();
@@ -28,8 +53,12 @@ public class Wordcount{
 			{
 				temp=word.split(",");
 			}
-			
-				temp=null;
+			if(temp==null)
+			{
+				insertword(word);
+			}
+			else {
+				insertwords();
 			}
 		}
 		txt.close();
