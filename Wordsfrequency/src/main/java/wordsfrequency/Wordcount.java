@@ -28,29 +28,7 @@ public class Wordcount{
 			{
 				temp=word.split(",");
 			}
-			if(temp==null)
-			{
-				if(frequency.containsKey(word))
-				{
-					int count=frequency.get(word)+1;
-					frequency.put(word, count);
-				}
-				else {
-					frequency.put(word, 1);
-				}
-			}
-			else {
-				for(String i:temp)
-				{
-					if(frequency.containsKey(i))
-					{
-						int count=frequency.get(i)+1;
-						frequency.put(i, count);
-					}
-					else {
-						frequency.put(i, 1);
-					}
-				}
+			
 				temp=null;
 			}
 		}
